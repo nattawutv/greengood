@@ -1,0 +1,12 @@
+-- Database: greengood
+
+-- DROP DATABASE greengood;
+
+CREATE DATABASE greengood
+    WITH
+    OWNER = greengood
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Thai_Thailand.874'
+    LC_CTYPE = 'Thai_Thailand.874'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;

@@ -1,0 +1,31 @@
+<div>main</div>
+<div id="menu-container">
+    <div id="menu-head">Menu All Product</div>
+    <div id="menu-body">
+        {% if cat_list %}
+        <ul>
+        {% for cat in cat_list %}
+            <li><a href="/buyer/{{ cat.id }}/">{{ cat.cat_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No category are available.</p>
+    {% endif %}
+    </div>
+</div>
+
+<div id="body-container">
+    <div id="item-body">
+        {% if item_list %}
+        <ul>
+        {% for item in item_list %}
+            <div id="item-box">
+                <li><a href="{% url 'buyer:detail' item.id %}">{{ item.item_name }}</a></li>
+            </div>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Item are available.</p>
+    {% endif %}
+    </div>
+</div>
