@@ -1,0 +1,13 @@
+#production
+/build
+
+# testing
+*.pyc
+*.bak
+*.tmp
+.metadata
+/settings
+
+/greengoods
+/test
+/green-repo
