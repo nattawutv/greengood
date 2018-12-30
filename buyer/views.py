@@ -4,6 +4,7 @@ from portal.models import Category
 from portal.models import Item
 
 from django.http import JsonResponse
+from django.core.serializers import serialize
 
 
 def home(request):
@@ -22,8 +23,12 @@ def detail(request, cat_id):
     return render(request, 'home.html', {'item': item})
 
 
-def rest(request):
+def most_popular(request):
     print('rest:connected')
-    json = JsonResponse({'items':[{'name':'xxx'}]})
-    print('data', json)
+    item_list = Item.objects.all()
+
+    jlist = list(item_list)
+    json = JsonResponse(jlist, safe=False)
+
+    # json = JsonResponse({'items':[{'name':'xxx'}]})
     return json
