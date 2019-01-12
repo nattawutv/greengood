@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, render
+from django.http import JsonResponse
+
+from rest_framework import viewsets
 
 from portal.models import Category
 from portal.models import Item
 
-from django.http import JsonResponse
-from django.core.serializers import serialize
+from buyer.serializers import ItemSerializer
 
 
 def home(request):
@@ -23,12 +25,17 @@ def detail(request, cat_id):
     return render(request, 'home.html', {'item': item})
 
 
+# old fashion
 def most_popular(request):
     print('rest:connected')
-    item_list = Item.objects.all()
 
-    jlist = list(item_list)
-    json = JsonResponse(jlist, safe=False)
-
-    # json = JsonResponse({'items':[{'name':'xxx'}]})
+    json = JsonResponse({'items': [{'name': 'xxx'}]})
     return json
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
