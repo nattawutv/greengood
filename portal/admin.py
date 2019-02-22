@@ -7,6 +7,7 @@ from .models import Category
 from .models import Price
 from .models import Item
 from .models import SubItem
+from .models import Unit
 
 admin.site.empty_value_display = '(None)'
 
@@ -47,5 +48,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Price)
+admin.site.register(Unit)
 admin.site.register(Item)
 admin.site.register(SubItem)

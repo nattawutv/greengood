@@ -5,8 +5,10 @@ from rest_framework import viewsets
 
 from portal.models import Category
 from portal.models import Item
+from portal.models import Price
 
 from buyer.serializers import ItemSerializer
+from buyer.serializers import PricingItemSerializer
 
 
 def home(request):
@@ -25,17 +27,28 @@ def detail(request, cat_id):
     return render(request, 'home.html', {'item': item})
 
 
-# old fashion
+# Test Json
 def most_popular(request):
     print('rest:connected')
+
+    queryset = Price.objects.all()
+    for row in queryset:
+        print(row.item.code, row.item.itm_name)
 
     json = JsonResponse({'items': [{'name': 'xxx'}]})
     return json
 
 
-class ItemViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Item.objects.all()
+class RecommendItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.filter(is_recommend=True)[:5]
     serializer_class = ItemSerializer
+
+
+class GetTopSaleItem(viewsets.ModelViewSet):
+    queryset = Item.objects.order_by('-sale_total')[:5]
+    serializer_class = ItemSerializer
+
+
+class GetPricingItem(viewsets.ModelViewSet):
+    queryset = Price.objects.all()
+    serializer_class = PricingItemSerializer

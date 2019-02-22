@@ -50,29 +50,42 @@ class Category(BaseEntity):
         return '%s' % self.cat_name
 
 
-class Price(BaseEntity):
-    sale_price = models.DecimalField(max_digits=7, decimal_places=2)
-    # effective date start
-    # effective date end
-
-    def __str__(self):
-        return '%s' % self.sale_price
-
-
 class Item(BaseEntity):
     code = models.CharField(max_length=3)
     itm_name = models.CharField(max_length=50)
     img_path = models.CharField(max_length=100)
-    rating = models.IntegerField
+    rating = models.IntegerField(default=0)
     delivery_fee = models.DecimalField(max_digits=7, decimal_places=2)
     is_recommend = models.BooleanField(null=True)
+    sale_total = models.IntegerField(default=0)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.ForeignKey(Price, on_delete=models.CASCADE)
+    # price = models.ForeignKey(Price, on_delete=models.CASCADE)
     # effective date start
     # effective date end
 
     def __str__(self):
         return '%s' % self.itm_name
+
+
+class Unit(BaseEntity):
+    code = models.CharField(max_length=2)
+    unit_name = models.CharField(max_length=50)
+    weight = models.CharField(max_length=100, null=True, blank=True)
+    weight_unit = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.unit_name
+
+
+class Price(BaseEntity):
+    sale_price = models.DecimalField(max_digits=7, decimal_places=2)
+    eff_start_date = models.DateTimeField('date published', default=datetime.now, blank=True)
+    eff_end_date = models.DateTimeField('date published', default=datetime.now, blank=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s' % self.sale_price
 
 
 class SubItem(BaseEntity):
@@ -82,11 +95,6 @@ class SubItem(BaseEntity):
 
     def __str__(self):
         return '%s' % self.sub_name
-
-
-class Unit(BaseEntity):
-    code = models.CharField(max_length=2)
-    unit_name = models.CharField(max_length=25)
 
 
 class StockBal(BaseEntity):
