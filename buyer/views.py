@@ -8,6 +8,7 @@ from portal.models import Item
 from portal.models import Price
 
 from buyer.serializers import ItemSerializer
+from buyer.serializers import ItemCatDivStoreSerializer
 from buyer.serializers import PricingItemSerializer
 from buyer.serializers import DivCatSerializer
 
@@ -40,8 +41,8 @@ from buyer.serializers import DivCatSerializer
 
 # There are API for React Front-end
 class RecommendItem(viewsets.ModelViewSet):
-    queryset = Item.objects.filter(is_recommend=True)[:5]
-    serializer_class = ItemSerializer
+    queryset = Item.objects.select_related('cat').prefetch_related('cat__div').filter(is_recommend=True)[:5]
+    serializer_class = ItemCatDivStoreSerializer
 
 
 class GetTopSaleItem(viewsets.ModelViewSet):
