@@ -1,0 +1,63 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Carrot",
+      "description": { "short": "SHORT", "long": "LONGLONGLONG" },
+      "price": 100,
+      "shop": { "name": "XX" }
+    },
+    {
+      "id": 2,
+      "title": "Tomato",
+      "description": { "short": "SHORT", "long": "LONGLONGLONG" },
+      "price": 120,
+      "shop": { "name": "XX" }
+    },
+    {
+      "id": 3,
+      "title": "Radish",
+      "description": { "short": "SHORT", "long": "LONGLONGLONG" },
+      "price": 100,
+      "shop": { "name": "XX" }
+    }
+  ],
+
+  "category":[
+    { 
+      "id": 1,
+      "type": "Chemical Free",
+      "name": "Vegetables"
+    },
+    { 
+      "id": 2,
+      "type": "Chemical Free",
+      "name": "Fruits"
+    },
+    { 
+      "id": 3,
+      "type": "Chemical Free",
+      "name": "Meats"
+    },
+    { 
+      "id": 4,
+      "type": "Chemical Free",
+      "name": "Processed Food"
+    },
+    { 
+      "id": 5,
+      "type": "Organics",
+      "name": "Vegetables"
+    },
+    { 
+      "id": 6,
+      "type": "Organics",
+      "name": "Fruits"
+    },
+    { 
+      "id": 7,
+      "type": "Organics",
+      "name": "Meats"
+    } 
+  ]
+}

@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 
 
 const styles = theme => ({
@@ -21,6 +20,55 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
 });
+
+// class ProductCategoryAccordian extends React.Component {
+
+//   componentDidMount(){
+//     fetch("http://localhost:8080/category")
+//     .then(data => data.json())
+//     .then(json => {
+//       this.setState({
+//         category: json
+//       });
+
+//       console.log(json)
+      
+//     })
+//     .catch(error => {
+//       // error network or json handling
+//     });
+//   }
+
+//   render(){
+//     const {classes} = this.props;
+
+//     return(
+//       <div className={classes.root}>
+//         <ExpansionPanel>
+//           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+//             <Typography className={classes.heading}>Chemical-Free</Typography>
+//           </ExpansionPanelSummary>
+//             <ExpansionPanelDetails>
+//               <List>
+//                 {this.state.category.map(category =>(
+//                   <ListItem button>
+//                     <ListItemText primary={category.name} />
+//                   </ListItem>
+//                 )
+//                 )}
+//               </List>
+//             </ExpansionPanelDetails>
+//         </ExpansionPanel>
+//       </div>
+//     );
+//   }
+// }
+
+// // ProductCategoryAccordian.PropTypes = {
+// //   classes: PropTypes.objects.isRequired,
+// // };
+
+// export default withStyles(styles)(ProductCategoryAccordian);
 
 function SimpleExpansionPanel(props) {
   const { classes } = props;
@@ -35,14 +83,14 @@ function SimpleExpansionPanel(props) {
             <ListItem button>
               <ListItemText primary="Vegetables" />
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button divider>
               <ListItemText primary="Fruits" />
             </ListItem>
             <ListItem button>
               <ListItemText primary="Meats" />
             </ListItem>
-            <Divider light />
+            {/* <Divider light /> */}
             <ListItem button>
               <ListItemText primary="processed food" />
             </ListItem>

@@ -8,7 +8,14 @@
     "contentful": "^7.0.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+<<<<<<< HEAD
     "react-scripts": "2.1.1",
+=======
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.1.2",
+    "redux": "^4.0.1",
+>>>>>>> 5ac2dbfe9fee466dd300533e81aaace0788768a7
     "semantic-ui": "^2.4.2",
     "semantic-ui-react": "^0.83.0"
   },
