@@ -13,9 +13,12 @@
 .idea/greengood.iml
 .idea/misc.xml
 .idea/workspace.xml
-#/front/node_modules
+/front/node_modules/
 /front/yes
 /portal/_pycache_
+front/package-lock.json
+.idea/workspace.xml
+
 
 venv/Lib/site-packages/easy-install.pth
 venv/Lib/site-packages/pip-10.0.1-py3.7.egg/EGG-INFO/dependency_links.txt
