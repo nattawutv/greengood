@@ -45,7 +45,7 @@ class RecommendItem(viewsets.ModelViewSet):
     serializer_class = ItemCatDivStoreSerializer
 
 
-class GetTopSaleItem(viewsets.ModelViewSet):
+class MostPopularItem(viewsets.ModelViewSet):
     queryset = Item.objects.order_by('-sale_total')[:5]
     serializer_class = ItemSerializer
 
@@ -55,6 +55,6 @@ class GetPricingItem(viewsets.ModelViewSet):
     serializer_class = PricingItemSerializer
 
 
-class GetDivCat(viewsets.ModelViewSet):
+class MainMenu(viewsets.ModelViewSet):
     queryset = Category.objects.all().prefetch_related('div').order_by('div')[:5]
     serializer_class = DivCatSerializer

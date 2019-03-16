@@ -59,6 +59,7 @@ class Item(BaseEntity):
     is_recommend = models.BooleanField(null=True)
     sale_total = models.IntegerField(default=0)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
+    short_desc = models.TextField(null=True, blank=True)
     # price = models.ForeignKey(Price, on_delete=models.CASCADE)
     # effective date start
     # effective date end
