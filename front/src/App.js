@@ -8,6 +8,7 @@ import ProductCategoryAccordian from "./components/ProductCategoryAccordian";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductListContext from "./ProductListContext";
+import ProductDetails from "./components/ProductDetails";
 
 class App extends Component {
   state = { checkedoutProducts: [] };
@@ -25,17 +26,26 @@ class App extends Component {
           <ProductListContext.Provider value={this.state.checkedoutProducts}>
             <NavBar />
           </ProductListContext.Provider>
-          <Route path="/" component={() => <ImageGridList />} />
-          <Grid container spacing={12}>
-            <Grid item xs={2}>
-              <ProductCategoryAccordian />
-            </Grid>
-            <Grid item xs={10}>
-              <Switch>
-                <Route
-                  path="/products"
-                  component={() => (
-                    <>
+          {/* <Route path="/" component={() => } /> */}
+          <Switch>
+            <Route
+              path="/products"
+              component={() => (
+                <>
+                 <ProductDetails></ProductDetails>
+                </>
+              )}
+            />
+            <Route
+              path="/"
+              component={() => (
+                <>
+                  <ImageGridList />
+                  <Grid container spacing={12}>
+                    <Grid item xs={2}>
+                      <ProductCategoryAccordian />
+                    </Grid>
+                    <Grid item xs={10}>
                       <Typography
                         component="h2"
                         variant="display2"
@@ -45,14 +55,12 @@ class App extends Component {
                         Most Popular
                       </Typography>
                       <ProductGrid onCheckoutClick={this.handleCheckoutClick} />
-                    </>
-                  )}
-                />
-
-                <Route path="/" component={() => <h1>Welcome to Product</h1>} />
-              </Switch>
-            </Grid>
-          </Grid>
+                    </Grid>
+                  </Grid>
+                </>
+              )}
+            />
+          </Switch>
         </div>
       </Router>
     );

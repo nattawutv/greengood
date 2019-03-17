@@ -142,7 +142,12 @@ class PrimarySearchAppBar extends React.Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem>
-          <Link to="/products">
+          <Link to="/products"
+         style={{
+          color: 'white',
+          textDecoration: 'none'
+          }}
+          >
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <ShoppingBasket />
@@ -179,14 +184,21 @@ class PrimarySearchAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              className={classes.title}
-              variant="h6"
-              color="inherit"
-              noWrap
+            <Link to="/"
+              style={{
+                color: 'white',
+                textDecoration: 'none'
+                }}
             >
-              GreenGoods
-            </Typography>
+              <Typography
+                className={classes.title}
+                variant="h6"
+                color="white"
+                noWrap
+              >
+                GreenGoods
+              </Typography>
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -203,7 +215,10 @@ class PrimarySearchAppBar extends React.Component {
             <div className={classes.sectionDesktop}>
               <Link to="/products">
                 <IconButton color="inherit">
-                  <Badge badgeContent={this.props.checkedoutCount} color="secondary">
+                  <Badge
+                    badgeContent={this.props.checkedoutCount}
+                    color="secondary"
+                  >
                     <ShoppingBasket />
                   </Badge>
                 </IconButton>
