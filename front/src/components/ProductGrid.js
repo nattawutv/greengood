@@ -58,7 +58,7 @@ class ProductGrid extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8080/products")
+    fetch("http://localhost:8000/items/MostPopularItem/")
       .then(data => data.json())
       .then(json => {
         this.setState({

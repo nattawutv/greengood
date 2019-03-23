@@ -72,8 +72,8 @@ class ProductCard extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title={this.props.product.title}
-          subheader={this.props.product.shop.name}
+          title={this.props.product.itm_name}
+          subheader={this.props.product.store_name}
         />
         <CardMedia
           className={classes.media}
