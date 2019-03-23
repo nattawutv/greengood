@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import img4 from "../image/tomatoes.jpg";
+import img_farm from "../image/farm_sample.jpg";
 import StarIcon from "@material-ui/icons/Star";
 import ShoppingIcon from "@material-ui/icons/ShoppingBasket";
 import StarRatingComponent from "react-star-rating-component";
@@ -14,10 +14,18 @@ import Select from "@material-ui/core/Select";
 import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
+import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
   formControl: {
-    margin: theme.spacing.unit,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
     minWidth: 120
   },
   addButton: {
@@ -35,12 +43,23 @@ const styles = theme => ({
   },
   iconSmall: {
     fontSize: 20
+  },
+  chip: {
+    backgroundColor: "#ADFF2F",
+    marginBottom: "10px"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
   }
 });
 class ProductDetails extends React.Component {
   state = {
     rating: 3.5,
-    open: false
+    open: false,
+    quantity: 1,
+    unit: 1
   };
 
   handleChange = event => {
@@ -93,6 +112,7 @@ class ProductDetails extends React.Component {
               <Grid container item xs={6} sm={6} md={6}>
                 <Grid item>
                   <h2>Tomatoes</h2>
+                  <Chip label="Organics" clickable className={classes.chip} />
                   <div>
                     <StarRatingComponent
                       editing={false}
@@ -115,12 +135,26 @@ class ProductDetails extends React.Component {
                     culpa qui officia deserunt mollit anim id est laborum.
                   </h4>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}>
+                <Grid item xs={12} sm={12} md={12}>
                   <h1 style={{ color: "#FF8900" }}>25 Baht </h1>
+                </Grid>
+                
+                <Grid item xs={6} sm={6} md={6}>
+                  <TextField
+                    label="Quantity"
+                    value={this.state.quantity}
+                    // onChange={this.handleChange("age")}
+                    type="number"
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    margin="normal"
+                  />
                 </Grid>
                 <Grid item xs={6} sm={6} md={6}>
                   <form autoComplete="off">
-                    <FormControl className={classes.formControl}>
+                    <FormControl className={classes.formControl}  margin="normal">
                       <InputLabel htmlFor="unit-select">Unit</InputLabel>
                       <Select
                         open={this.state.open}
@@ -159,7 +193,10 @@ class ProductDetails extends React.Component {
                     <Button
                       variant="contained"
                       size="small"
-                      className={classNames(classes.button, classes.checkButton)}
+                      className={classNames(
+                        classes.button,
+                        classes.checkButton
+                      )}
                     >
                       <div>Checkout</div>
                     </Button>
@@ -168,7 +205,36 @@ class ProductDetails extends React.Component {
               </Grid>
             </Grid>
             <Grid item xs={4} md={4}>
-              <Paper>Shopping Basket Summary</Paper>
+              <Card>
+                <CardActionArea>
+                  <CardMedia
+                    style={{ height: 300 }}
+                    image={img_farm}
+                    title="Farm Story"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Farm Story
+                    </Typography>
+                    <Typography component="p">
+                      Our soil has been farmed for over one hundred and fifty
+                      years. Many farmers who came before us cared for this soil
+                      and this land. We consider organic farming to be the
+                      fountain of youth of soil. Nutrient rich soil produces
+                      nutrient rich food. In a country of perceived abundance,
+                      people are eating more and more unhealthy food, and our
+                      bodies are not getting the vitamins and minerals they
+                      need. Healthy soil produces healthy crops and healthy
+                      crops produce healthy people. Farming organically and
+                      promoting good dietary choices is a privilege. Our land
+                      has previously been planted in fruit trees, most recently
+                      walnut trees, which were removed in 2006. The soil is a
+                      sycamore silty clay loam, with an excellent texture for
+                      growing all kinds of vegetables.
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
             </Grid>
           </Grid>
         </div>

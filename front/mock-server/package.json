@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "json-server": "^0.14.2"
+  },
+  "dependencies": {
+    "material-ui-rating": "^3.0.1"
   }
 }

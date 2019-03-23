@@ -10,6 +10,7 @@ import ProductCard from "./ProductCard";
 import CheckoutModal from "./CheckoutModal";
 import ProductListContext from "../ProductListContext";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -115,11 +116,18 @@ class ProductGrid extends React.Component {
             >
               {this.state.products.map(product => (
                 <Grid key={product.id} item>
+                  <Link
+                    to="/products"
+                    style={{
+                      textDecoration: "none"
+                    }}
+                  >
                   <ProductCard
                     product={product}
                     plusDidClick={this.plusDidClick}
                     onOpenCheckoutModalClick={this.handleOpenCheckoutModalClick}
                   />
+                  </Link>
                 </Grid>
               ))}
             </Grid>

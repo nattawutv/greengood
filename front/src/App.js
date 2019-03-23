@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductListContext from "./ProductListContext";
 import ProductDetails from "./components/ProductDetails";
+import BasketSummary from "./components/BasketSummary";
 
 class App extends Component {
   state = { checkedoutProducts: [] };
@@ -33,6 +34,14 @@ class App extends Component {
               component={() => (
                 <>
                  <ProductDetails></ProductDetails>
+                </>
+              )}
+            />
+            <Route
+              path="/summary"
+              component={()=>(
+                <>
+                  <BasketSummary/>
                 </>
               )}
             />
