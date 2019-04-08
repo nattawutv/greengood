@@ -2,15 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
+// import FormLabel from "@material-ui/core/FormLabel";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import RadioGroup from "@material-ui/core/RadioGroup";
+// import Radio from "@material-ui/core/Radio";
 import ProductCard from "./ProductCard";
 import CheckoutModal from "./CheckoutModal";
-import ProductListContext from "../ProductListContext";
+// import ProductListContext from "../ProductListContext";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -77,12 +76,25 @@ class ProductGrid extends React.Component {
           ? {
               ...product,
               price: product.price + 10,
-              like: (product.like || 0) + 1
+              qty: (product.qty || 0) + 1
             }
           : product
       )
     });
   };
+
+  removeDidClick = productId => {
+    this.setState({
+      products: this.state.products.map(product=>
+          product.id = productId
+          ? {
+            ...product,
+            qty: (product.qty || 1) - 1
+          }
+          : product
+        )
+    });
+  ;}
 
   // addProducts = (product, index) => {
   //   this.setState({
@@ -116,18 +128,13 @@ class ProductGrid extends React.Component {
             >
               {this.state.products.map(product => (
                 <Grid key={product.id} item>
-                  <Link
-                    to="/products"
-                    style={{
-                      textDecoration: "none"
-                    }}
-                  >
+                  
                   <ProductCard
                     product={product}
                     plusDidClick={this.plusDidClick}
+                    removeDidClick={this.removeDidClick}
                     onOpenCheckoutModalClick={this.handleOpenCheckoutModalClick}
                   />
-                  </Link>
                 </Grid>
               ))}
             </Grid>

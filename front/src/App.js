@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import ProductGrid from "./components/ProductGrid";
 import ImageGridList from "./components/ImageGridList";
 import Typography from "@material-ui/core/Typography";
-import ProductCategoryAccordian from "./components/ProductCategoryAccordian";
+import ProductCategoryMenu from "./components/ProductCategoryMenu";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductListContext from "./ProductListContext";
@@ -30,18 +30,18 @@ class App extends Component {
           {/* <Route path="/" component={() => } /> */}
           <Switch>
             <Route
-              path="/products"
-              component={() => (
+              path="/product/:product"
+              render={({match}) => (
                 <>
-                 <ProductDetails></ProductDetails>
+                  <ProductDetails params={match.params}/>
                 </>
               )}
             />
             <Route
               path="/summary"
-              component={()=>(
+              component={() => (
                 <>
-                  <BasketSummary/>
+                  <BasketSummary />
                 </>
               )}
             />
@@ -49,22 +49,24 @@ class App extends Component {
               path="/"
               component={() => (
                 <>
-                  <ImageGridList />
-                  <Grid container spacing={12}>
+                  <Grid container spacing={12} style={{ paddingTop: 80 }}>
                     <Grid item xs={2}>
-                      <ProductCategoryAccordian />
+                      <ProductCategoryMenu />
                     </Grid>
                     <Grid item xs={10}>
-                      <Typography
-                        component="h2"
-                        variant="display2"
-                        gutterBottom
-                        style={{ paddingTop: 20, paddingLeft: 20 }}
-                      >
-                        Most Popular
-                      </Typography>
-                      <ProductGrid onCheckoutClick={this.handleCheckoutClick} />
+                      <ImageGridList />
                     </Grid>
+                  </Grid>
+                  <Grid container spacing={12}>
+                    <Typography
+                      component="h2"
+                      variant="display2"
+                      gutterBottom
+                      style={{ paddingTop: 20, paddingLeft: 20 }}
+                    >
+                      Most Popular
+                    </Typography>
+                    <ProductGrid onCheckoutClick={this.handleCheckoutClick} />
                   </Grid>
                 </>
               )}
