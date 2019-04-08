@@ -5,38 +5,6 @@ import { withStyles } from "@material-ui/core/styles";
 import ProductDetailsCard from "./ProductDetailsCard";
 import FarmStoryCard from "./FarmStoryCard";
 
-const styles = theme => ({
-  formControl: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    minWidth: 120
-  },
-  addButton: {
-    backgroundColor: "#FF6F00",
-    color: "#FFFFFF",
-    margin: "10px"
-  },
-  checkButton: {
-    backgroundColor: "#FF0000",
-    color: "#FFFFFF",
-    margin: "10px"
-  },
-  leftIcon: {
-    marginRight: theme.spacing.unit
-  },
-  iconSmall: {
-    fontSize: 20
-  },
-  chip: {
-    backgroundColor: "#ADFF2F",
-    marginBottom: "10px"
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  }
-});
 class ProductDetails extends React.Component {
   state = {
     product: []
@@ -68,8 +36,34 @@ class ProductDetails extends React.Component {
   //   this.setState({ open: true });
   // };
 
+  addDidClick = () => {
+    this.setState({
+      product: {
+        ...this.state.product,
+        qty: (this.state.product.qty || 0) + 1
+      }
+    });
+  };
+
+  removeDidClick = () => {
+    this.setState({
+      product: {
+        ...this.state.product,
+        qty: (this.state.product.qty || 1) - 1
+      }
+    });
+  };
+
+  selectUnit = selectedUnit => {
+    this.setState({
+      product: {
+        ...this.state.product,
+        unit: selectedUnit
+      }
+    });
+  };
+
   render() {
-    const { classes } = this.props;
     return (
       <React.Fragment>
         <div>
@@ -101,7 +95,13 @@ class ProductDetails extends React.Component {
             </Grid>
             <Grid container spacing={12}>
               <Grid item xs={8} md={8}>
-                <ProductDetailsCard product={this.state.product} key={this.state.product.id} />
+                <ProductDetailsCard
+                  product={this.state.product}
+                  addDidClick={this.addDidClick}
+                  removeDidClick={this.removeDidClick}
+                  selectUnit={this.selectUnit}
+                  key={this.state.product.id}
+                />
               </Grid>
               <Grid item xs={4} md={4}>
                 <FarmStoryCard />
@@ -114,4 +114,4 @@ class ProductDetails extends React.Component {
   }
 }
 
-export default withStyles(styles)(ProductDetails);
+export default ProductDetails;

@@ -11,8 +11,8 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import RemoveIcon from "@material-ui/icons/IndeterminateCheckBox";
+import AddIcon from "@material-ui/icons/AddBox";
 import ShoppingIcon from "@material-ui/icons/ShoppingBasket";
 import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
@@ -20,11 +20,12 @@ import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import StarRatingComponent from "react-star-rating-component";
 import StarIcon from "@material-ui/icons/Star";
+import QuantityComponent from "./QuantityComponent";
 
 const styles = theme => ({
   card: {
-    width: 380,
-    height: 460
+    width: 300,
+    height: 400
   },
   media: {
     width: "100%",
@@ -41,7 +42,7 @@ const styles = theme => ({
     justifyContent: "space-between",
     paddingTop: 20,
     margin: 5,
-    position: 'relative'
+    position: "relative"
   },
   body: {
     alignSelf: "end",
@@ -49,18 +50,20 @@ const styles = theme => ({
     flex: 1
   },
   priceText: {
-    fontWeight: 'bold',
-    color: "#FF8900" ,
-    fontSize: 22
-  }
+    fontWeight: "bold",
+    color: "#FF8900",
+    fontSize: 18
+  },
+  alignmiddle: {
+    display: "flex",
+    justifyContent: "middle",
+    alignItems: "center"
+  },
 });
 
 class ProductCard extends React.Component {
-  state = { isExpanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ isExpanded: !state.isExpanded }));
-  };
+  state = {
+};
 
   render() {
     const { classes } = this.props;
@@ -73,17 +76,17 @@ class ProductCard extends React.Component {
     };
 
     return (
+      <React.Fragment>
       <Card className={classes.card}>
         <CardHeader
           title={this.props.product.itm_name}
           subheader={this.props.product.store_name}
         />
         <Link
-          to={'product/'+ this.props.product.id} 
+          to={"product/" + this.props.product.id}
           style={{
             textDecoration: "none"
           }}
-          
         >
           <CardMedia
             className={classes.media}
@@ -98,10 +101,13 @@ class ProductCard extends React.Component {
               truncateText="…"
               text={this.props.product.short_desc}
             />
-            <Grid container style={{
-                    paddingTop: 10,
-                    margin: 5
-                  }}>
+            <Grid
+              container
+              style={{
+                paddingTop: 10,
+                margin: 5
+              }}
+            >
               <Grid item xs="6" md="6">
                 <StarRatingComponent
                   editing={false}
@@ -110,20 +116,23 @@ class ProductCard extends React.Component {
                   renderStarIcon={() => <StarIcon />}
                 />
               </Grid>
-              <Grid item xs='6' md='6'>
-              <div className={classes.priceText}>
-                {/* {this.props.product.price} */}
-                ${this.props.product.delivery_fee}</div>
+              <Grid item xs="6" md="6">
+                <div className={classes.priceText}>
+                  {/* {this.props.product.price} */}$
+                  {this.props.product.delivery_fee}
+                </div>
               </Grid>
             </Grid>
           </CardContent>
         </div>
-        <CardActions className={classes.actions}>
-          <Grid container md="12px">
+        {/* <CardActions className={classes.actions}> */}
+        <CardActions>
+          {/* <QuantityComponent product={this.props.product}/> */}
+          <Grid container md={12} className={classNames(classes.alignmiddle)}>
             <IconButton aria-label="Remove" onClick={handleRemoveQty}>
               <RemoveIcon />
             </IconButton>
-            <Avatar aria-label="Qty">{this.props.product.qty || 0}</Avatar>
+            <div>{this.props.product.qty || 0}</div>
             <IconButton aria-label="Add" onClick={handleAddQty}>
               <AddIcon />
             </IconButton>
@@ -136,7 +145,7 @@ class ProductCard extends React.Component {
           >
             <ShoppingBasket />
           </IconButton> */}
-          <Grid container md="12px" alignItems="center">
+          <Grid container md={12} alignItems="center">
             <Grid item alignContent="center" paddingLeft={4}>
               <Button
                 variant="contained"
@@ -146,15 +155,13 @@ class ProductCard extends React.Component {
                   this.props.onOpenCheckoutModalClick(this.props.product.id)
                 }
               >
-                <ShoppingIcon
-                  className={classNames(classes.leftIcon, classes.iconSmall)}
-                />
                 <div>Add To Basket</div>
               </Button>
             </Grid>
           </Grid>
         </CardActions>
       </Card>
+      </React.Fragment>
     );
   }
 }

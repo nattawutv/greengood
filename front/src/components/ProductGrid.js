@@ -25,7 +25,13 @@ class ProductGrid extends React.Component {
     spacing: "16",
     products: [],
     isCheckoutModalOpen: false,
-    checkedoutProducts: []
+    checkedoutProducts: [],
+    units: [
+      { id: 1, name: "kilos" },
+      { id: 2, name: "pack" },
+      { id: 3, name: "dozen" },
+      { id: 4, name: "bag" }
+    ] 
   };
 
   handleChange = key => (event, value) => {
@@ -37,7 +43,10 @@ class ProductGrid extends React.Component {
   handleOpenCheckoutModalClick = productId => {
     this.setState({
       // isCheckoutModalOpen: true,
-      selectedProduct: this.state.products.find(p => p.id === productId)
+      selectedProduct: {
+        ...this.state.products.find(p => p.id === productId),
+        units: this.state.units
+      }
     });
   };
 
