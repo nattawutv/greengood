@@ -417,5 +417,10 @@ front/mock-server/package-lock.json
 front/mock-server/package.json
 front/package-lock.json
 greengood/.DS_Store
+
 .idea/workspace.xml
 .idea/workspace.xml
+
+bfront/.DS_Store
+bfront/css/.DS_Store
+Greengood.code-workspace

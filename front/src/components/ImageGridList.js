@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   gridList: {
     width: '100%',
-    height: 500,
+    height: '100%',
   },
 });
 
@@ -33,7 +33,7 @@ function ImageGridList(props) {
         {tileData.map(tile => (
           <GridListTile key={tile.img} cols={tile.cols || 1}>
             <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
+            {/* <GridListTileBar
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
@@ -41,7 +41,7 @@ function ImageGridList(props) {
                   <ShoppingBasket />
                 </IconButton>
               }
-            />
+            /> */}
           </GridListTile>
         ))}
       </GridList>

@@ -36,7 +36,8 @@ const styles = theme => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block"
-    }
+    },
+    color: "#FFFFFF"
   },
   search: {
     position: "relative",
@@ -177,7 +178,7 @@ class PrimarySearchAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="fixed" style={{ backgroundColor: "#79C000" }}>
+        <AppBar position="fixed" style={{ backgroundColor: "#3e5b06" }}>
           <Toolbar>
             <IconButton
               className={classes.menuButton}
@@ -196,7 +197,6 @@ class PrimarySearchAppBar extends React.Component {
               <Typography
                 className={classes.title}
                 variant="h6"
-                color="white"
                 noWrap
               >
                 GreenGoods

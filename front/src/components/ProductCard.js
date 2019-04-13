@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
+import classNames from "classnames";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -11,133 +11,157 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import red from "@material-ui/core/colors/red";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import RemoveIcon from "@material-ui/icons/IndeterminateCheckBox";
+import AddIcon from "@material-ui/icons/AddBox";
+import ShoppingIcon from "@material-ui/icons/ShoppingBasket";
+import TextTruncate from "react-text-truncate";
+import { Link } from "react-router-dom";
+import { Grid } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import StarRatingComponent from "react-star-rating-component";
+import StarIcon from "@material-ui/icons/Star";
+import QuantityComponent from "./QuantityComponent";
 
 const styles = theme => ({
   card: {
-    maxWidth: 300
+    width: 300,
+    height: 400
   },
   media: {
-    height: 0,
+    width: "100%",
+    // height: 0,
     paddingTop: "56.25%" // 16:9
   },
+  addButton: {
+    backgroundColor: "#FF6F00",
+    color: "#FFFFFF",
+    width: "100%"
+  },
   actions: {
-    display: "flex"
+    display: "flex",
+    justifyContent: "space-between",
+    paddingTop: 20,
+    margin: 5,
+    position: "relative"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto",
-    [theme.breakpoints.up("sm")]: {
-      marginRight: -8
-    }
+  body: {
+    alignSelf: "end",
+    height: 80,
+    flex: 1
   },
-  expandOpen: {
-    transform: "rotate(180deg)"
+  priceText: {
+    fontWeight: "bold",
+    color: "#FF8900",
+    fontSize: 18
   },
-  avatar: {
-    backgroundColor: red[500]
-  }
+  alignmiddle: {
+    display: "flex",
+    justifyContent: "middle",
+    alignItems: "center"
+  },
 });
 
 class ProductCard extends React.Component {
-  state = { isExpanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ isExpanded: !state.isExpanded }));
-  };
+  state = {
+};
 
   render() {
     const { classes } = this.props;
-    const handleLike = () => {
+    const handleAddQty = () => {
       this.props.plusDidClick(this.props.product.id);
     };
 
+    const handleRemoveQty = () => {
+      this.props.removeDidClick(this.props.product.id);
+    };
+
     return (
+      <React.Fragment>
       <Card className={classes.card}>
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              {this.props.product.like || 0}
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
           title={this.props.product.itm_name}
           subheader={this.props.product.store_name}
         />
-        <CardMedia
-          className={classes.media}
-          image="http://staffingstream.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/carrots.jpg"
-          title="Paella dish"
-        />
-        <CardContent>
-          <Typography component="p">
-            {this.props.product.description.short} {this.props.product.price}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={handleLike}>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton
+        <Link
+          to={"product/" + this.props.product.id}
+          style={{
+            textDecoration: "none"
+          }}
+        >
+          <CardMedia
+            className={classes.media}
+            image="http://staffingstream.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/carrots.jpg"
+            title="Paella dish"
+          />
+        </Link>
+        <div className={classes.body}>
+          <CardContent>
+            <TextTruncate
+              line={2}
+              truncateText="…"
+              text={this.props.product.short_desc}
+            />
+            <Grid
+              container
+              style={{
+                paddingTop: 10,
+                margin: 5
+              }}
+            >
+              <Grid item xs="6" md="6">
+                <StarRatingComponent
+                  editing={false}
+                  starCount={5}
+                  value={this.props.product.rating}
+                  renderStarIcon={() => <StarIcon />}
+                />
+              </Grid>
+              <Grid item xs="6" md="6">
+                <div className={classes.priceText}>
+                  {/* {this.props.product.price} */}$
+                  {this.props.product.delivery_fee}
+                </div>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </div>
+        {/* <CardActions className={classes.actions}> */}
+        <CardActions>
+          {/* <QuantityComponent product={this.props.product}/> */}
+          <Grid container md={12} className={classNames(classes.alignmiddle)}>
+            <IconButton aria-label="Remove" onClick={handleRemoveQty}>
+              <RemoveIcon />
+            </IconButton>
+            <div>{this.props.product.qty || 0}</div>
+            <IconButton aria-label="Add" onClick={handleAddQty}>
+              <AddIcon />
+            </IconButton>
+          </Grid>
+          {/* <IconButton
             aria-label="Add to Basket"
-            onClick={() => this.props.onOpenCheckoutModalClick(this.props.product.id)}
+            onClick={() =>
+              this.props.onOpenCheckoutModalClick(this.props.product.id)
+            }
           >
             <ShoppingBasket />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.isExpanded
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.isExpanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
+          </IconButton> */}
+          <Grid container md={12} alignItems="center">
+            <Grid item alignContent="center" paddingLeft={4}>
+              <Button
+                variant="contained"
+                size="small"
+                className={classNames(classes.addButton)}
+                onClick={() =>
+                  this.props.onOpenCheckoutModalClick(this.props.product.id)
+                }
+              >
+                <div>Add To Basket</div>
+              </Button>
+            </Grid>
+          </Grid>
         </CardActions>
-        <Collapse in={this.state.isExpanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              {this.props.product.description.long}
-            </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that don’t
-              open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
-            </Typography>
-          </CardContent>
-        </Collapse>
       </Card>
+      </React.Fragment>
     );
   }
 }
