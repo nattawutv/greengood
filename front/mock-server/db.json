@@ -59,5 +59,54 @@
       "type": "Organics",
       "name": "Meats"
     } 
+  ],
+  
+  "BasketSummary":[
+    {
+      "id": 1,
+      "no": "20054321",
+      "storeName": "Morning Green",
+      "status": "Sent",
+      "subtotal":140.00,
+      "deliveryFee":65.00,
+      "total":205.00,
+      "products":[
+       { "id":1,
+        "name":"Cucumber",
+        "qty": 1,
+        "unit": 25.00,
+        "price": 25.00
+       },
+       { "id":2,
+        "name":"Morning Glory",
+        "qty": 2,
+        "unit": 5.00,
+        "price": 10.00
+       },
+       { "id":3,
+        "name":"Tomatoes",
+        "qty": 3,
+        "unit": 35.00,
+        "price": 105.00
+       }
+      ]
+    },
+    {
+      "id": 2,
+      "no": "20054322",
+      "storeName": "Jomjai Farm",
+      "status": "Waiting for payment",
+      "subtotal":25.00,
+      "deliveryFee":50.00,
+      "total":75.00,
+      "products":[
+       { "id":4,
+        "name":"Bread",
+        "qty": 1,
+        "unit": 25.00,
+        "price": 25.00
+       }
+      ]
+    }
   ]
 }

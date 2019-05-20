@@ -94,7 +94,7 @@ class ProductDetails extends React.Component {
               </Link>
             </Grid>
             <Grid container spacing={12}>
-              <Grid item xs={8} md={8}>
+              <Grid item xs={12} sm={8} md={8}>
                 <ProductDetailsCard
                   product={this.state.product}
                   addDidClick={this.addDidClick}
@@ -103,7 +103,7 @@ class ProductDetails extends React.Component {
                   key={this.state.product.id}
                 />
               </Grid>
-              <Grid item xs={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <FarmStoryCard />
               </Grid>
             </Grid>

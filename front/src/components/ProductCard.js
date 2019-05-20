@@ -58,12 +58,11 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "middle",
     alignItems: "center"
-  },
+  }
 });
 
 class ProductCard extends React.Component {
-  state = {
-};
+  state = {};
 
   render() {
     const { classes } = this.props;
@@ -77,67 +76,68 @@ class ProductCard extends React.Component {
 
     return (
       <React.Fragment>
-      <Card className={classes.card}>
-        <CardHeader
-          title={this.props.product.itm_name}
-          subheader={this.props.product.store_name}
-        />
-        <Link
-          to={"product/" + this.props.product.id}
-          style={{
-            textDecoration: "none"
-          }}
-        >
-          <CardMedia
-            className={classes.media}
-            image="http://staffingstream.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/carrots.jpg"
-            title="Paella dish"
-          />
-        </Link>
-        <div className={classes.body}>
-          <CardContent>
-            <TextTruncate
-              line={2}
-              truncateText="…"
-              text={this.props.product.short_desc}
+        <Card className={classes.card}>
+          <Link
+            to={"product/" + this.props.product.id}
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            <CardHeader
+              title={this.props.product.itm_name}
+              subheader={this.props.product.store_name}
             />
-            <Grid
-              container
-              style={{
-                paddingTop: 10,
-                margin: 5
-              }}
-            >
-              <Grid item xs="6" md="6">
-                <StarRatingComponent
-                  editing={false}
-                  starCount={5}
-                  value={this.props.product.rating}
-                  renderStarIcon={() => <StarIcon />}
+
+            <CardMedia
+              className={classes.media}
+              image="http://staffingstream.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/carrots.jpg"
+              title="Paella dish"
+            />
+            <div className={classes.body}>
+              <CardContent>
+                <TextTruncate
+                  line={2}
+                  truncateText="…"
+                  text={this.props.product.short_desc}
                 />
-              </Grid>
-              <Grid item xs="6" md="6">
-                <div className={classes.priceText}>
-                  {/* {this.props.product.price} */}$
-                  {this.props.product.delivery_fee}
-                </div>
-              </Grid>
+                <Grid
+                  container
+                  style={{
+                    paddingTop: 10,
+                    margin: 5
+                  }}
+                >
+                  <Grid item xs="6" md="6">
+                    <StarRatingComponent
+                      editing={false}
+                      starCount={5}
+                      value={this.props.product.rating}
+                      renderStarIcon={() => <StarIcon />}
+                    />
+                  </Grid>
+                  <Grid item xs="6" md="6">
+                    <div className={classes.priceText}>
+                      {/* {this.props.product.price} */}$
+                      {this.props.product.delivery_fee}
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </div>
+          </Link>
+          {/* <CardActions className={classes.actions}> */}
+          <CardActions>
+            {/* <QuantityComponent product={this.props.product}/> */}
+            <Grid container md={12} className={classNames(classes.alignmiddle)}>
+              <IconButton aria-label="Remove" onClick={handleRemoveQty}>
+                <RemoveIcon />
+              </IconButton>
+              <div>{this.props.product.qty || 0}</div>
+              <IconButton aria-label="Add" onClick={handleAddQty}>
+                <AddIcon />
+              </IconButton>
             </Grid>
-          </CardContent>
-        </div>
-        {/* <CardActions className={classes.actions}> */}
-        <CardActions>
-          {/* <QuantityComponent product={this.props.product}/> */}
-          <Grid container md={12} className={classNames(classes.alignmiddle)}>
-            <IconButton aria-label="Remove" onClick={handleRemoveQty}>
-              <RemoveIcon />
-            </IconButton>
-            <div>{this.props.product.qty || 0}</div>
-            <IconButton aria-label="Add" onClick={handleAddQty}>
-              <AddIcon />
-            </IconButton>
-          </Grid>
-          {/* <IconButton
+            {/* <IconButton
             aria-label="Add to Basket"
             onClick={() =>
               this.props.onOpenCheckoutModalClick(this.props.product.id)
@@ -145,22 +145,22 @@ class ProductCard extends React.Component {
           >
             <ShoppingBasket />
           </IconButton> */}
-          <Grid container md={12} alignItems="center">
-            <Grid item alignContent="center" paddingLeft={4}>
-              <Button
-                variant="contained"
-                size="small"
-                className={classNames(classes.addButton)}
-                onClick={() =>
-                  this.props.onOpenCheckoutModalClick(this.props.product.id)
-                }
-              >
-                <div>Add To Basket</div>
-              </Button>
+            <Grid container md={12} alignItems="center">
+              <Grid item alignContent="center" paddingLeft={4}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  className={classNames(classes.addButton)}
+                  onClick={() =>
+                    this.props.onOpenCheckoutModalClick(this.props.product.id)
+                  }
+                >
+                  <div>Add To Basket</div>
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardActions>
-      </Card>
+          </CardActions>
+        </Card>
       </React.Fragment>
     );
   }

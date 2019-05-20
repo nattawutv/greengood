@@ -14,6 +14,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
+import HomeIcon from "@material-ui/icons/Home";
 import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -185,23 +186,20 @@ class PrimarySearchAppBar extends React.Component {
               color="inherit"
               aria-label="Open drawer"
             >
-              <MenuIcon />
-            </IconButton>
-            <Link
-              to="/"
-              style={{
-                color: "white",
-                textDecoration: "none"
-              }}
-            >
-              <Typography
-                className={classes.title}
-                variant="h6"
-                noWrap
+              <Link
+                to="/"
+                style={{
+                  color: "white",
+                  textDecoration: "none"
+                }}
               >
-                GreenGoods
-              </Typography>
-            </Link>
+                <HomeIcon />
+              </Link>
+            </IconButton>
+
+            <Typography className={classes.title} variant="h6" noWrap>
+              GreenGoods
+            </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -221,7 +219,7 @@ class PrimarySearchAppBar extends React.Component {
                   color="inherit"
                   style={{
                     color: "FFFFFF",
-                    textDecoration: "none",
+                    textDecoration: "none"
                   }}
                 >
                   <Badge

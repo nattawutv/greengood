@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductListContext from "./ProductListContext";
 import ProductDetails from "./components/ProductDetails";
 import BasketSummary from "./components/BasketSummary";
+import Signin from "./components/SignIn";
 
 class App extends Component {
   state = { checkedoutProducts: [] };
@@ -42,6 +43,14 @@ class App extends Component {
               component={() => (
                 <>
                   <BasketSummary />
+                </>
+              )}
+            />
+            <Route
+              path="/sign-in"
+              component={() => (
+                <>
+                  <Signin />
                 </>
               )}
             />

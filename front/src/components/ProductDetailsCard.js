@@ -73,10 +73,10 @@ class ProductDetailsCard extends React.Component {
     };
     return (
       <Grid container className={classes.root}>
-        <Grid item xs={6} sm={6} md={6} className={classes.root}>
+        <Grid item xs={12} sm={6} md={6} className={classes.root}>
           <img style={{ width: "100%" }} src={img4} alt="Tomatoes" />
         </Grid>
-        <Grid container item xs={6} sm={6} md={6} className={classes.root}>
+        <Grid container item xs={12} sm={6} md={6} className={classes.root}>
           <Grid item>
             <h2>{this.props.product.item}</h2>
             <Chip label="Organics" clickable className={classes.chip} />
@@ -192,7 +192,7 @@ class ProductDetailsCard extends React.Component {
                 className={classNames(classes.button, classes.addButton)}
               >
                 <ShoppingIcon className={classNames(classes.iconSmall)} />
-                <div>Add To Basket</div>
+                <div>Buy Now</div>
               </Button>
             </Grid>
             <Grid item>
