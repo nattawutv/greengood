@@ -50,6 +50,16 @@ class Category(BaseEntity):
         return '%s' % self.cat_name
 
 
+class Unit(BaseEntity):
+    code = models.CharField(max_length=2)
+    unit_name = models.CharField(max_length=50)
+    weight = models.CharField(max_length=100, null=True, blank=True)
+    weight_unit = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.unit_name
+
+
 class Item(BaseEntity):
     code = models.CharField(max_length=3)
     itm_name = models.CharField(max_length=50)
@@ -60,22 +70,13 @@ class Item(BaseEntity):
     sale_total = models.IntegerField(default=0)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
     short_desc = models.TextField(null=True, blank=True)
-    # price = models.ForeignKey(Price, on_delete=models.CASCADE)
+    # price = models.ManyToManyField(Price)
+    unit = models.ManyToManyField(Unit, through='Price')
     # effective date start
     # effective date end
 
     def __str__(self):
         return '%s' % self.itm_name
-
-
-class Unit(BaseEntity):
-    code = models.CharField(max_length=2)
-    unit_name = models.CharField(max_length=50)
-    weight = models.CharField(max_length=100, null=True, blank=True)
-    weight_unit = models.CharField(max_length=50, null=True, blank=True)
-
-    def __str__(self):
-        return '%s' % self.unit_name
 
 
 class Price(BaseEntity):

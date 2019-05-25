@@ -40,7 +40,7 @@ class ItemCatDivStoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ('code', 'itm_name', 'img_path', 'rating', 'delivery_fee', 'is_recommend', 'sale_total')
+        fields = '__all__'
 
 
 
